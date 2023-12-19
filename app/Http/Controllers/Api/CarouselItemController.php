@@ -15,7 +15,6 @@ class CarouselItemController extends Controller
      */
     public function index()
     {
-        //
         return CarouselItems::all();
     }
 
