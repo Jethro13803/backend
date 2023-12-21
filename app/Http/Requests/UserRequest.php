@@ -29,6 +29,13 @@ class UserRequest extends FormRequest
                 'password'   => 'required|min:8',
             ];
         }
+        else if(request()->routeIs('user.login'))
+        {
+            return [
+                'email'      => 'required|string|email|max:255',
+                'password'   => 'required|min:8',
+            ];
+        }
         else if(request()->routeIs('user.update'))
         {
             return 
