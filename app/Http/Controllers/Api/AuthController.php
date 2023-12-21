@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Login using the specified resource.
      */
     public function login(UserRequest $request)
     {
@@ -33,11 +34,16 @@ class AuthController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Logout using the specified resource.
      */
-    public function logout(UserRequest $request)
+    public function logout(Request $request)
     {
-        return false;
+        $request->user()->tokens()->delete();
+
+        $response = [
+            'message' => 'Logout.'
+        ];
+        return $response;
     }
 
 }
